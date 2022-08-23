@@ -1,0 +1,7 @@
+.screen {
+  @apply h-screen;
+}
+
+.container {
+  @apply my-0 mx-auto h-full flex items-center justify-center flex-col bg-gradient-to-r from-leftColor-90 to-rightColor-90;
+}

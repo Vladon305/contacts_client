@@ -1,23 +1,24 @@
 import React, { FC } from 'react'
-import { useGetContactsQuery } from '../../store/userSlice'
+import { useTypedSelector } from '../../hooks/useTypedSelector'
 import AddContact from '../addContact/addContact'
 import Contact from '../contact/contact'
 import styles from './contacts.module.scss'
 
-type Props = {
-  userId: number
-}
+type Props = {}
 
-const Contacts: FC<Props> = ({ userId }) => {
-  const { data, isLoading } = useGetContactsQuery(userId)
-  console.log(data)
+const Contacts: FC<Props> = () => {
+  const { user } = useTypedSelector((state) => state.user)
 
   return (
-    <div>
-      <AddContact userId={userId} />
-      {data?.map((cont) => (
-        <Contact key={cont.id} name={cont.name} phone={cont.phone} />
-      ))}
+    <div className={styles.screen}>
+      <div>
+        <AddContact userId={user._id} />
+        <div className={styles.contacts}>
+          {user.contacts?.map((cont, i) => (
+            <Contact key={cont._key} id={cont._key} index={i} name={cont.name} phone={cont.phone} />
+          ))}
+        </div>
+      </div>
     </div>
   )
 }

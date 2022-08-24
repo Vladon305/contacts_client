@@ -1,0 +1,19 @@
+.body {
+  @apply my-4 p-4 flex items-center bg-slate-400 rounded-lg;
+
+  .edit {
+    @apply w-4;
+  }
+
+  .name {
+    @apply ml-14;
+  }
+
+  .phone {
+    @apply ml-64;
+  }
+
+  .delete {
+    @apply ml-auto w-4;
+  }
+}

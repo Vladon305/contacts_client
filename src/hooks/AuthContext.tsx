@@ -1,4 +1,12 @@
-import { createContext, Dispatch, FC, ReactNode, SetStateAction, useMemo, useState } from 'react'
+import {
+  createContext,
+  Dispatch,
+  FC,
+  ReactNode,
+  SetStateAction,
+  useMemo,
+  useState,
+} from 'react'
 
 interface IContext {
   isAuth: boolean

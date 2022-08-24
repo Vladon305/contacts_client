@@ -9,7 +9,6 @@ type Props = {
 const Layout: React.FC<Props> = ({ children, setIsLogin }) => {
   return (
     <div className={styles.screen}>
-      <header>logout</header>
       <main className={styles.container}>{children}</main>
     </div>
   )

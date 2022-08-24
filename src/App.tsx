@@ -8,18 +8,17 @@ import { AuthContext } from './hooks/AuthContext'
 const App: React.FC = () => {
   const { isAuth, setIsAuth } = useContext(AuthContext)
   const [isLogin, setIsLogin] = useState(true)
-  const [userId, setUserId] = useState<number>()
 
   return (
     <Layout setIsLogin={setIsLogin}>
       {!isAuth ? (
         isLogin ? (
-          <Login setIsAuth={setIsAuth} setIsLogin={setIsLogin} setUserId={setUserId} />
+          <Login setIsAuth={setIsAuth} setIsLogin={setIsLogin} />
         ) : (
-          <Registration setIsAuth={setIsAuth} setIsLogin={setIsLogin} setUserId={setUserId} />
+          <Registration setIsAuth={setIsAuth} setIsLogin={setIsLogin} />
         )
       ) : (
-        <Contacts userId={userId ? userId : 1} />
+        <Contacts />
       )}
     </Layout>
   )

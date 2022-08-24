@@ -1,0 +1,10 @@
+.screen {
+  @apply flex justify-center items-center flex-col h-full;
+
+  .contacts {
+    @apply mt-2 p-4 h-420 bg-black bg-opacity-10 rounded-lg overflow-y-scroll;
+    &::webkit-scrollbar {
+      display: none;
+    }
+  }
+}

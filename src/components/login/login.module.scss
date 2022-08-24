@@ -1,48 +1,52 @@
-.form {
-  @apply w-full p-8 bg-black bg-opacity-10;
+.screen {
+  @apply flex justify-center items-center flex-col h-full;
 
-  @media screen and (min-width: 600px) {
-    @apply max-w-sm;
+  .form {
+    @apply w-full p-8 bg-black bg-opacity-10;
+
+    @media screen and (min-width: 600px) {
+      @apply max-w-sm;
+    }
   }
-}
 
-.row {
-  @apply flex mb-4;
-}
-
-.label {
-  @apply w-12 flex items-center justify-center bg-grayLight;
-}
-.input {
-  @apply p-4 flex-1 text-base text-gray;
-
-  &:focus {
-    outline: none;
-    transition: transform 0.15s ease;
-    transform: scale(1.1);
+  .row {
+    @apply flex mb-4;
   }
-}
 
-.error {
-  @apply mb-4;
-}
-
-.button {
-  @apply block p-4 w-full text-white text-xs font-semibold bg-gradient-to-r from-greenDark to-grayLight cursor-pointer;
-
-  text-shadow: 0 1px 0 rgba(black, 0.2);
-
-  &:focus {
-    outline: none;
-    transition: transform 0.15s ease;
-    transform: scale(1.1);
+  .label {
+    @apply w-12 flex items-center justify-center bg-grayLight;
   }
-}
+  .input {
+    @apply p-4 flex-1 text-base text-gray;
 
-.ref {
-  @apply mt-4 text-xs text-center text-greenLight;
-}
+    &:focus {
+      outline: none;
+      transition: transform 0.15s ease;
+      transform: scale(1.1);
+    }
+  }
 
-::placeholder {
-  @apply text-gray;
+  .error {
+    @apply mb-4;
+  }
+
+  .button {
+    @apply block p-4 w-full text-white text-xs font-semibold bg-gradient-to-r from-greenDark to-grayLight cursor-pointer;
+
+    text-shadow: 0 1px 0 rgba(black, 0.2);
+
+    &:focus {
+      outline: none;
+      transition: transform 0.15s ease;
+      transform: scale(1.1);
+    }
+  }
+
+  .ref {
+    @apply mt-4 text-xs text-center text-greenLight;
+  }
+
+  ::placeholder {
+    @apply text-gray;
+  }
 }

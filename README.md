@@ -38,7 +38,7 @@
    3. Клиент серверное взаимодействие: @sanity/client
 2. Backend: Sanity
 
-###Версия Nodejs: v16.17.0
+### Версия Nodejs: v16.17.0
 
 ## [Ссылка на развернутый проект: https://contacts-vladon305.vercel.app/](https://contacts-vladon305.vercel.app/)
 

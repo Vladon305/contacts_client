@@ -12,10 +12,10 @@ const Contacts: FC<Props> = () => {
   return (
     <div className={styles.screen}>
       <div>
-        <AddContact userId={user._id} />
+        <AddContact userId={user?._id} />
         <div className={styles.contacts}>
-          {user.contacts?.map((cont, i) => (
-            <Contact key={cont._key} id={cont._key} index={i} name={cont.name} phone={cont.phone} />
+          {user?.contacts?.map((cont, i) => (
+            <Contact key={cont._key} id={cont._key} index={i} />
           ))}
         </div>
       </div>

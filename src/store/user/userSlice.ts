@@ -3,7 +3,7 @@ import { IContact, IUser } from '../../types/types'
 import { createUser, getUser, login, addContact, editContact, removeContact } from './reducers'
 
 const initialState = {
-  user: {} as unknown as IUser,
+  user: null as unknown as IUser,
 }
 
 export const userSlice = createSlice({
@@ -12,6 +12,10 @@ export const userSlice = createSlice({
   reducers: {
     setUser: (state, action: PayloadAction<IUser>) => {
       state.user = action.payload
+    },
+    editUserContact: (state, action: PayloadAction<IContact>) => {
+      const contactIndex = state.user.contacts.findIndex((contact) => contact._key === action.payload._key)
+      state.user.contacts[contactIndex] = action.payload
     },
   },
   extraReducers: {

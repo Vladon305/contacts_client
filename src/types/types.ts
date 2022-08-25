@@ -1,3 +1,5 @@
+import { ActionCreatorWithPayload } from '@reduxjs/toolkit'
+
 export type IUser = {
   _id: string
   name: string
@@ -37,3 +39,10 @@ export type removeContactDto = {
   contactId: string
   index: number
 }
+
+export type editContactDto = {
+  contact: IContact
+  func: ActionCreatorWithPayload<IContact, string>
+}
+
+export type MutationSelection = { query: string } | { id: string }

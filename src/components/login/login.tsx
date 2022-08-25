@@ -1,10 +1,11 @@
-import React, { Dispatch, FC, SetStateAction } from 'react'
+import React, { Dispatch, FC, SetStateAction, useEffect, useState } from 'react'
 import styles from './login.module.scss'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import User from '../../assets/user.svg'
 import Key from '../../assets/key.svg'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { login } from '../../store/user/reducers'
+import { useTypedSelector } from '../../hooks/useTypedSelector'
 
 type Props = {
   setIsAuth: Dispatch<SetStateAction<boolean>>
@@ -26,11 +27,19 @@ const Login: FC<Props> = ({ setIsLogin, setIsAuth }) => {
   })
 
   const dispatch = useAppDispatch()
+  const { user } = useTypedSelector((state) => state.user)
+  const [error, setError] = useState('')
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    dispatch(login(data))
-    setIsAuth(true)
+    dispatch(login(data)).catch(() => {
+      setError('Invalid email or password')
+      setTimeout(() => setError(''), 2000)
+    })
   }
+
+  useEffect(() => {
+    if (user) setIsAuth(true)
+  }, [user, setIsAuth])
 
   return (
     <div className={styles.screen}>
@@ -53,9 +62,7 @@ const Login: FC<Props> = ({ setIsLogin, setIsAuth }) => {
             className={styles.input}
           />
         </div>
-        <div className={styles.error}>
-          {errors?.email && <div>{errors.email.message}</div>}
-        </div>
+        <div className={styles.error}>{errors?.email && <div>{errors.email.message}</div>}</div>
 
         <div className={styles.row}>
           <div className={styles.label}>
@@ -75,9 +82,8 @@ const Login: FC<Props> = ({ setIsLogin, setIsAuth }) => {
             className={styles.input}
           />
         </div>
-        <div className={styles.error}>
-          {errors?.password && <div>{errors.password.message}</div>}
-        </div>
+        <div className={styles.error}>{errors?.password && <div>{errors.password.message}</div>}</div>
+        {error && <div className={styles.error}>{error}</div>}
         <button className={styles.button} type="submit">
           Log in
         </button>

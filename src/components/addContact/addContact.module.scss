@@ -4,7 +4,7 @@
   .row {
     @apply flex justify-center items-center flex-col relative;
     .input {
-      @apply p-4 mx-4 flex-1 text-base text-gray rounded-lg;
+      @apply p-4 mx-4 flex-1 text-base rounded-lg;
     }
 
     .error {

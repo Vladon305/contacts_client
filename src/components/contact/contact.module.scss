@@ -6,11 +6,19 @@
   }
 
   .name {
-    @apply ml-14;
+    @apply ml-24 flex-1;
+
+    .input {
+      @apply w-52 rounded-md p-1 font-semibold;
+    }
   }
 
   .phone {
-    @apply ml-64;
+    @apply mr-14 flex-1;
+
+    .input {
+      @apply w-52 rounded-md p-1 font-semibold;
+    }
   }
 
   .delete {

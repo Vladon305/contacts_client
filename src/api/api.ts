@@ -1,5 +1,6 @@
-import { IdentifiedSanityDocumentStub, SanityDocumentStub, UploadOptions } from '@sanity/client'
+import { IdentifiedSanityDocumentStub, SanityDocumentStub } from '@sanity/client'
 import { client } from '../client'
+import { IContact, MutationSelection } from '../types/types'
 
 type AttributeSet = { [key: string]: any }
 
@@ -31,14 +32,10 @@ export const patchAPI = async (
     .commit()
 }
 
-export const assetAPI = async (
-  assetType: 'image',
-  body: File | Blob | Buffer | ReadableStream<any>,
-  options?: UploadOptions | undefined
-) => {
-  return await client.assets.upload(assetType, body, options)
+export const patchInArrayAPI = async (documentId: string, contacts: IContact[]) => {
+  return await client.patch(documentId).set({ contacts }).commit()
 }
 
-export const deleteAPI = async (document: string, attrs: string[]) => {
-  return await client.patch(document).unset(attrs).commit()
+export const deleteAPI = async (documentId: string | MutationSelection, attrs: string[]) => {
+  return await client.patch(documentId).unset(attrs).commit()
 }

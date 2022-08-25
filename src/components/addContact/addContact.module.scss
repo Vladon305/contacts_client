@@ -1,19 +1,19 @@
 .form {
-  @apply flex justify-center p-8 bg-black bg-opacity-10 rounded-lg;
+  @apply flex justify-center md:p-8 bg-black bg-opacity-10 rounded-lg;
 
   .row {
-    @apply flex justify-center items-center flex-col relative;
+    @apply flex justify-center items-center flex-col md:relative;
     .input {
-      @apply p-4 mx-4 flex-1 text-base rounded-lg;
+      @apply p-1 md:p-4 mx-4 flex-1 text-base rounded-lg;
     }
 
     .error {
-      @apply my-4 absolute top-10 text-red-500;
+      @apply my-4 md:absolute top-10 text-red-500;
     }
   }
 
   .button {
-    @apply block p-4 mx-4 w-full text-white text-xs font-semibold bg-gradient-to-r from-greenDark to-grayLight cursor-pointer rounded-lg;
+    @apply block px-1 md:p-4 mx-4 w-full text-white text-xs font-semibold bg-gradient-to-r from-greenDark to-grayLight cursor-pointer rounded-lg;
 
     text-shadow: 0 1px 0 rgba(black, 0.2);
   }

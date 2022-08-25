@@ -11,7 +11,7 @@ const Contacts: FC<Props> = () => {
 
   return (
     <div className={styles.screen}>
-      <div>
+      <div className={styles.container}>
         <AddContact userId={user?._id} />
         <div className={styles.contacts}>
           {user?.contacts?.map((cont, i) => (

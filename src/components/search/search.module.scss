@@ -1,0 +1,7 @@
+.container {
+  @apply flex justify-between items-center;
+
+  .input {
+    @apply flex-1 p-1 mr-2 rounded-md;
+  }
+}

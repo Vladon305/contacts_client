@@ -5,29 +5,26 @@ import { MdDeleteOutline } from 'react-icons/md'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { editContact, removeContact } from '../../store/user/reducers'
 import { useActions } from '../../hooks/useActions'
-import { useTypedSelector } from '../../hooks/useTypedSelector'
 import { IContact } from '../../types/types'
 
 type Props = {
-  id: string
   index: number
+  contact: IContact
 }
 
-const Contact: FC<Props> = ({ id, index }) => {
+const Contact: FC<Props> = ({ index, contact }) => {
   const [NameMod, setNameMod] = useState(false)
   const [PhoneMod, setPhoneMod] = useState(false)
 
   const dispatch = useAppDispatch()
   const { editUserContact } = useActions()
 
-  const contact = useTypedSelector((state) => state.user.user.contacts.find((contact) => contact._key === id))
-
-  if (!contact) {
-    throw new Error('contact not found')
-  }
   const [locContact, setLocContact] = useState(contact)
 
-  const deleteContact = useCallback(() => dispatch(removeContact({ contactId: id, index })), [dispatch, id, index])
+  const deleteContact = useCallback(
+    () => dispatch(removeContact({ contactId: contact._key, index })),
+    [dispatch, contact._key, index]
+  )
   const edit = useCallback(
     (contact: IContact) => {
       dispatch(editUserContact(contact))
@@ -54,7 +51,7 @@ const Contact: FC<Props> = ({ id, index }) => {
           <div>
             Name:
             <br />
-            <div className={styles.input}>{locContact.name}</div>
+            <div className={styles.input}>{locContact?.name}</div>
           </div>
         ) : (
           <div>
@@ -63,7 +60,7 @@ const Contact: FC<Props> = ({ id, index }) => {
             <input
               type="text"
               className={styles.input}
-              value={locContact.name}
+              value={locContact?.name}
               onChange={(e) => setLocContact({ ...locContact, name: e.currentTarget.value })}
               autoFocus={true}
             />
@@ -76,7 +73,7 @@ const Contact: FC<Props> = ({ id, index }) => {
           <div>
             Phone:
             <br />
-            <div className={styles.input}>{locContact.phone}</div>
+            <div className={styles.input}>{locContact?.phone}</div>
           </div>
         ) : (
           <div>
@@ -84,7 +81,7 @@ const Contact: FC<Props> = ({ id, index }) => {
             <input
               type="text"
               className={styles.input}
-              value={locContact.phone}
+              value={locContact?.phone}
               onChange={(e) => setLocContact({ ...locContact, phone: e.currentTarget.value })}
               autoFocus={true}
             />

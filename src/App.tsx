@@ -5,6 +5,7 @@ import Login from './components/login/login'
 import Registration from './components/registration/registration'
 import { AuthContext } from './hooks/AuthContext'
 import { useActions } from './hooks/useActions'
+import { useAppDispatch } from './hooks/useAppDispatch'
 import { fetchUser } from './utils/fetchUser'
 
 const App: React.FC = () => {
@@ -12,14 +13,15 @@ const App: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true)
 
   const { setUser } = useActions()
+  const dispatch = useAppDispatch()
   useEffect(() => {
     const user = fetchUser()
     if (!user) setIsAuth(false)
     else {
       setIsAuth(true)
-      setUser(user)
+      dispatch(setUser(user))
     }
-  }, [setIsAuth, setUser])
+  }, [setIsAuth, setUser, dispatch])
 
   return (
     <Layout setIsLogin={setIsLogin}>

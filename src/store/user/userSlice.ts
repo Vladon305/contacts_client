@@ -4,6 +4,7 @@ import { createUser, getUser, login, addContact, editContact, removeContact } fr
 
 const initialState = {
   user: null as unknown as IUser,
+  searchedContacts: [] as unknown as IContact[],
 }
 
 export const userSlice = createSlice({
@@ -16,6 +17,15 @@ export const userSlice = createSlice({
     editUserContact: (state, action: PayloadAction<IContact>) => {
       const contactIndex = state.user.contacts.findIndex((contact) => contact._key === action.payload._key)
       state.user.contacts[contactIndex] = action.payload
+    },
+    searchContacts: (state, action: PayloadAction<string>) => {
+      if (!/^[0-9 /+]+$/.test(action.payload)) {
+        state.searchedContacts = state.user.contacts.filter((contact) =>
+          contact.name.toLowerCase().includes(action.payload.toLowerCase())
+        )
+      } else {
+        state.searchedContacts = state.user.contacts.filter((contact) => contact.phone.includes(action.payload))
+      }
     },
   },
   extraReducers: {
